@@ -3,7 +3,7 @@
 SERVER='%(server)s'
 USERS="%(users)s"
 
-baseURL='http://XXX/keymanager/servers/getKeys/'
+baseURL='http://%(gestion_adresse)s/keymanager/servers/getKeys/'
 
 for usr in $USERS; do
 

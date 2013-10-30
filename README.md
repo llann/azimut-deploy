@@ -9,7 +9,7 @@ To be used with azimut-gestion tool !
 
 Copy `config.py.dist` to `config.py` and edit values if needed.
 
-Some scripts except configuration files (for vim, zsh, etc.), who should be in the `AZIMUT_CONFIG` folder. You can find our files (https://github.com/Azimut-Prod/azimut-config)[here].
+Some scripts except configuration files (for vim, zsh, etc.), who should be in the `AZIMUT_CONFIG` folder. You can find our files [here](https://github.com/Azimut-Prod/azimut-config).
 
 ## Scripts available
 

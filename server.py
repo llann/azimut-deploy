@@ -18,6 +18,7 @@ def upgrade():
     sudo("apt-get upgrade -y")
     sudo("apt-get dist-upgrade -y")
 
+
 @task
 def install_sudo():
     """Install the sudo programm. Need to be runned with root"""
@@ -34,6 +35,7 @@ def reboot():
         time.sleep(1)
         x -= 1
     sudo("reboot")
+
 
 @task
 def shutdown():
@@ -57,6 +59,7 @@ def copy_key_manager():
     upload_template('files/updateKeys.sh', '/root/updateKeys.sh', {
             'server': env.keymanagerName,
             'users': env.keyManagerUsers,
+            'gestion_adresse': config.GESTION_ADDRESS,
         }, use_sudo=True)
 
     sudo("chmod +x /root/updateKeys.sh")
@@ -67,7 +70,7 @@ def cron_key_manager():
     """Install the crontab for the keymanagement"""
     sudo('touch /tmp/crondump')
     with settings(warn_only=True):
-        sudo('crontab -l > /tmp/crondump')             
+        sudo('crontab -l > /tmp/crondump')
     sudo('echo " 42 * * * * /root/updateKeys.sh" >> /tmp/crondump')
     sudo('crontab /tmp/crondump')
 
@@ -96,6 +99,7 @@ def copy_config():
     put(config.AZIMUT_CONFIG + '/.screenrc', '~')
     put(config.AZIMUT_CONFIG + '/.zshrc', '~')
 
+
 @task
 def copy_user_config():
     """Copy the config for a user [$AG:NeedUser]"""
@@ -120,19 +124,22 @@ def switch_shell_to_zsh():
     """Change the shell to ZSH"""
     run('chsh -s /bin/zsh')
 
+
 @task
 def install_rsync():
     """Install rsync"""
     sudo("apt-get install rsync")
 
+
 @task
 def add_gestion_for_self_vms():
-    """Add a host for it2d vm so they can access the server [$AG:NeedGestion]"""
+    """Add a host for gestion vm so they can access the server even if on the same server [$AG:NeedGestion]"""
 
     if not hasattr(env, 'gestion_ip') or env.gestion_ip == '':
-        return 
+        return
     sudo('echo "' + env.gestion_ip + ' ' + env.gestion_name + '" >> /etc/hosts')
-  
+
+
 @task
 def setup():
     """Setup a new server [$AG:NeedKM][$AG:NeedGestion]"""
