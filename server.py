@@ -1,5 +1,5 @@
 from fabric.api import *
-from fabric.contrib.files import upload_template
+from fabric.contrib.files import upload_template, append
 
 import time
 import config
@@ -71,7 +71,8 @@ def cron_key_manager():
     sudo('touch /tmp/crondump')
     with settings(warn_only=True):
         sudo('crontab -l > /tmp/crondump')
-    sudo('echo " 42 * * * * /root/updateKeys.sh" >> /tmp/crondump')
+
+    append('/tmp/crondump', '42 * * * * /root/updateKeys.sh', use_sudo=True)
     sudo('crontab /tmp/crondump')
 
 
