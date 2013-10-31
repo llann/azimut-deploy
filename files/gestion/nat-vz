@@ -1,0 +1,25 @@
+#!/bin/sh
+
+case "$1" in
+start) echo "Starting iptables NAT for openvz"
+    /sbin/iptables -t nat -D POSTROUTING -s 10.7.0.0/24 -o %(interface)s -j SNAT --to %(server_ip)s
+    /sbin/iptables -t nat -A POSTROUTING -s 10.7.0.0/24 -o %(interface)s -j SNAT --to %(server_ip)s
+    /sbin/iptables -t nat -A PREROUTING -i %(interface)s -p tcp --dport 10122 -j DNAT --to 10.7.0.1:22
+    /sbin/iptables -t nat -A PREROUTING -i %(interface)s -p tcp --dport 10222 -j DNAT --to 10.7.0.2:22
+    /sbin/iptables -t nat -A PREROUTING -i %(interface)s -p tcp --dport 80 -j DNAT --to 10.7.0.1:80
+        
+    ;;
+stop) echo "Stopping iptables NAT for openvz"
+    /sbin/iptables -t nat -D POSTROUTING -s 10.7.0.0/24 -o %(interface)s -j SNAT --to %(server_ip)s
+    /sbin/iptables -t nat --flush PREROUTING
+
+    ;;
+flush) echo "Flusing iptables NAT for openvz"
+    /sbin/iptables -t nat --flush PREROUTING
+
+    ;;
+*) echo "Usage: /etc/init.d/nat-vz {start|stop|flush}"
+    exit 2
+    ;;
+esac
+exit 0
