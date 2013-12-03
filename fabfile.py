@@ -16,3 +16,6 @@ import owncloud
 
 # Import gestion deployement tools
 import gestion
+
+# Import zabbix tools
+import zabbix
