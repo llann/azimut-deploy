@@ -110,6 +110,7 @@ def copy_user_config():
 
     put(config.AZIMUT_CONFIG + '/.vim*', '/home/' + env.fab_user + '/')
     put(config.AZIMUT_CONFIG + '/.screenrc', '/home/' + env.fab_user + '/')
+    put(config.AZIMUT_CONFIG + '/.zsh*', '/home/' + env.fab_user + '/')
     put(config.AZIMUT_CONFIG + '/.zshrc-user', '/home/' + env.fab_user + '/.zshrc')
 
 
