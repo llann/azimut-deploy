@@ -98,7 +98,7 @@ def copy_config():
 
     put(config.AZIMUT_CONFIG + '/.vim*', '~')
     put(config.AZIMUT_CONFIG + '/.screenrc', '~')
-    put(config.AZIMUT_CONFIG + '/.zshrc', '~')
+    put(config.AZIMUT_CONFIG + '/.zsh*', '~')
 
 
 @task
