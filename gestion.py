@@ -18,9 +18,9 @@ NGINX_NAME = 'nginx'
 GESTION_IP = '10.7.0.2'
 GESTION_NAME = 'gestion'
 
-GIT_GESTION = 'https://github.com/Azimut-Prod/azimut-gestion.git'
-GIT_DEPLOY = 'https://github.com/Azimut-Prod/azimut-deploy.git'
-GIT_CONFIG = 'https://github.com/Azimut-Prod/azimut-config.git'
+GIT_GESTION = 'https://github.com/llann/azimut-gestion.git'
+GIT_DEPLOY = 'https://github.com/llann/azimut-deploy.git'
+GIT_CONFIG = 'https://github.com/llann/azimut-config.git'
 
 
 def gimme_prox_cox():
