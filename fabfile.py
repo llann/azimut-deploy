@@ -19,3 +19,6 @@ import gestion
 
 # Import zabbix tools
 import zabbix
+
+# Import logstash tools
+import logstash
